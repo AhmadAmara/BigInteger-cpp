@@ -1,10 +1,14 @@
 #pragma once
 
+#include <iostream>
 #include <ostream>
 #include<string>
 #include<vector>
 
+#define BASE 10
+
 typedef long long int ll;
+
 
 /**
 this class can represent a base 10 big integers
@@ -15,8 +19,10 @@ class BigInteger
 {
 
 public:
+	
 	explicit BigInteger(ll integer);
 	explicit BigInteger(std::string str_integer);
+	BigInteger();
 	BigInteger(const BigInteger& other);
 
 	BigInteger& operator=(BigInteger other); // cpy assignment
@@ -49,16 +55,14 @@ public:
 	bool operator>=(const BigInteger& other);
 	bool operator<=(const BigInteger& other);
 
+	friend std::ostream& operator<<(std::ostream& os, const BigInteger& num);
+
 
 private:
-	std::vector<int> m_integer_vector;
+	std::vector<int> m_vInteger;
 	bool m_negative; 
 
 };
-
-
-std::ostream& operator<<(std::ostream& os, const BigInteger& num);
-
 
 
 

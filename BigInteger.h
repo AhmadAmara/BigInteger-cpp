@@ -18,12 +18,20 @@ or after math operators evaluted on it
 class BigInteger
 {
 
+private:
+		typedef std::vector<int> Digits;
+
 public:
 	
 	explicit BigInteger(ll integer);
 	explicit BigInteger(std::string str_integer);
-	BigInteger();
-	BigInteger(const BigInteger& other);
+	BigInteger(); 
+
+	explicit BigInteger(const Digits& digits, bool negative):
+	m_digits(digits), m_negative(negative){};
+
+	BigInteger(const BigInteger& other):
+	m_digits(other.m_digits), m_negative(other.m_negative){};
 
 	BigInteger& operator=(BigInteger other); // cpy assignment
 
@@ -58,8 +66,15 @@ public:
 	friend std::ostream& operator<<(std::ostream& os, const BigInteger& num);
 
 
+
+	// typedef Digits::iterator iterator;
+	// typedef Digits::const_iterator const_iterator;
+	// iterator begin() { return m_digits.begin(); }
+	// iterator end() { return m_digits.end(); }
+
 private:
-	std::vector<int> m_vInteger;
+	Digits m_digits;
+	// std::vector<int> m_vInteger;
 	bool m_negative; 
 
 };
